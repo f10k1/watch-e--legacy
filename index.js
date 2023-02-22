@@ -1,21 +1,31 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
+const express = require("express");
+const dotenv = require("dotenv");
 const path = require("path");
+const multer = require("multer");
+const route = require("./public/routes");
+const dataSource = require("./dataSource");
 
+dotenv.config({ path: path.resolve('./.env') });
+
+const app = express();
+const PORT = process.env.PORT;
+
+app.use(express.json());
 const router = express.Router();
 app.use(router);
+
+const upload = multer();
 
 const rootPath = path.resolve("./public");
 app.use(express.static(rootPath));
 
-route = require("./app/routes");
-route.appRoute(router);
+route.default(router, upload);
 
 app.set("view engine", "pug");
-app.set("views", path.resolve("./app/views"));
+app.set("views", path.resolve("./views"));
 
-router.get('/', (req, res) => res.render("layouts/home"))
+dataSource.default.initialize()
 
-app.listen(PORT, console.log("Server don start for port: " + PORT))
+router.get('/', upload.none(), (req, res) => res.render("pages/home"));
+
+app.listen(PORT);
