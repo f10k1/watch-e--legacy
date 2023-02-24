@@ -2,9 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
 const multer = require("multer");
-const route = require("./public/routes");
+const route = require("./dist/routes");
 const dataSource = require("./dataSource");
-
+const i18next = require("i18next");
+const i18nextHttpMiddleware = require("i18next-http-middleware")
+const i18nBackend = require("i18next-fs-backend")
 dotenv.config({ path: path.resolve('./.env') });
 
 const app = express();
@@ -16,7 +18,29 @@ app.use(router);
 
 const upload = multer();
 
-const rootPath = path.resolve("./public");
+i18next.use(i18nBackend).use(i18nextHttpMiddleware.LanguageDetector).init({
+    backend: {
+        loadPath: './locales/{{lng}}.json',
+    },
+    fallbackLng: 'en',
+    supportedLngs: ['en', 'pl'],
+});
+
+app.use(i18nextHttpMiddleware.handle(i18next, {
+    ignoreRoutes: ['/public', '/disc']
+}))
+
+app.use((req, res, next) => {
+    global.locale = req.language
+    i18next.changeLanguage(req.language)
+    next()
+})
+
+app.locals.__ = i18next.t
+
+app.use(express.static(path.resolve('./public')));
+
+const rootPath = path.resolve("./dist");
 app.use(express.static(rootPath));
 
 route.default(router, upload);
@@ -24,7 +48,7 @@ route.default(router, upload);
 app.set("view engine", "pug");
 app.set("views", path.resolve("./views"));
 
-dataSource.default.initialize()
+dataSource.default.initialize();
 
 router.get('/', upload.none(), (req, res) => res.render("pages/home"));
 

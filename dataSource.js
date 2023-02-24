@@ -4,7 +4,7 @@ require("dotenv").config('./.env');
 const fs = require('fs');
 const path = require('path');
 
-const entities_files = fs.readdirSync(path.resolve(__dirname, './public/database/')).filter((f) => {
+const entities_files = fs.readdirSync(path.resolve(__dirname, './dist/database/')).filter((f) => {
     return f.endsWith('.js');
 });
 const migrations_files = fs.readdirSync(path.resolve(__dirname, './migrations/compiled/')).filter((f) => {
@@ -20,7 +20,7 @@ function importSth(js_files, array, path) {
         array.push(imported[Object.keys(imported)[0]])
     }
 }
-importSth(entities_files, entities, './public/database/')
+importSth(entities_files, entities, './dist/database/')
 importSth(migrations_files, migrations, './migrations/compiled/')
 
 Object.defineProperty(exports, "__esModule", { value: true });
