@@ -1,9 +1,6 @@
-doctype html:5
+doctype html
 html(lang='en')
     head
+        include ../partials/head.pug
     body
-        p #{data}
-        ul
-            if user
-                each user in users
-                    li #{user.login}
+        p #{data.id}

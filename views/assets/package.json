@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "description": "My webpack project",
+  "name": "my-webpack-project",
+  "scripts": {
+    "dev:assets": "start node copy-images.js && node create-icons.js && node copy-fonts.js && webpack --mode=production --watch",
+    "dev": "webpack --mode=production --watch"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "mini-css-extract-plugin": "^2.7.2",
+    "sass": "^1.58.3",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2"
+  }
+}

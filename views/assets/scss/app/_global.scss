@@ -1,0 +1,10 @@
+html {
+    font-size: 6.25%;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    quotes: "\201c""\201d";
+    @include font-styles(16, 19, 500);
+    color: var(--main-font)
+}
