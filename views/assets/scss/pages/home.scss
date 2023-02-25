@@ -77,6 +77,31 @@ header {
         }
     }
 
+    @media only screen and (max-width: 1300px) {
+        min-height: 550px;
+        .info-section {
+            padding: 25px 0 0;
+            flex-direction: column-reverse;
+            display: flex;
+            gap: 25px;
+            text-align: center;
+            .header-info {
+                h1 {
+                    @include font-styles(31, 37.2, 700);
+                }
+                p {
+                    margin-bottom: 25px;
+                }
+                a {
+                    margin: 0 auto;
+                }
+            }
+            .header-image {
+                max-width: 450px;
+            }
+        }
+    }
+
     @media only screen and (max-width: 1024px) {
         min-height: unset;
         padding: 0px 0 130px;
@@ -93,33 +118,26 @@ header {
             clip-path: polygon(0 85%, 100% 15%, 100% 100%, 0% 100%);
         }
         .info-section {
-            padding: 25px 0 0;
-            flex-direction: column-reverse;
-            display: flex;
-            gap: 25px;
-            .header-info {
-                h1 {
-                    @include font-styles(31, 37.2, 700);
-                }
-                p {
-                    margin-bottom: 25px;
-                }
-            }
             .container {
                 display: flex;
                 flex-direction: column-reverse;
+                .header-info{
+                    max-width: fit-content;
+                }
                 img {
                     display: block;
                 }
             }
-            .header-image {
-                display: none;
-            }
+        }
+        .header-image {
+            display: none;
         }
     }
 }
 
 main {
+    position: relative;
+    padding: 20px;
     h3 {
         @include font-styles(40, 46.88, 700);
         text-align: center;
@@ -144,8 +162,6 @@ main {
                 gap: 15px;
                 align-items: center;
                 flex-direction: column;
-                strong {
-                }
                 span {
                     width: 60px;
                     height: 60px;
@@ -158,6 +174,10 @@ main {
         display: flex;
         flex-direction: column;
         gap: 120px;
+        img {
+            border-radius: 12.5px;
+            box-shadow: 0px 7.5px 20.833332061767578px -6.25px #192a5933;
+        }
         div {
             align-items: center;
             display: grid;
@@ -167,7 +187,7 @@ main {
     }
 
     @media only screen and (max-width: 1024px) {
-        padding: 50px 0 0;
+        padding: 50px 0;
         section:not(:last-child) {
             margin-bottom: 70px !important;
         }
@@ -196,16 +216,16 @@ main {
                 }
             }
         }
-        .features{
+        .features {
             gap: 30px;
-            div{
+            div {
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
-                article{
+                article {
                     order: 1;
                 }
-                img{
+                img {
                     order: 2;
                 }
             }

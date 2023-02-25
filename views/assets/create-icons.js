@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-if (!fs.existsSync(`../../public/icons`)) {
+if (fs.existsSync(`../../public/icons`)) {
+    fs.rmSync(`../../public/icons/*`, { force: true });
+}
+else {
     fs.mkdirSync(`../../public/icons`);
 }
 
@@ -9,7 +12,7 @@ const filelist = [];
 
 fs.readdirSync(`./icons`).forEach(file => {
     filelist.push(file.split('.').slice(0, -1).join('.'));
-    fs.copyFileSync('./icons/'+file, '../../public/icons/'+file)
+    fs.copyFileSync('./icons/' + file, '../../public/icons/' + file);
 });
 
 const iconslist = filelist.map(file => `.icon--${file} { mask: url(../icons/${file}.svg); -webkit-mask: url(../icons/${file}.svg) }`);

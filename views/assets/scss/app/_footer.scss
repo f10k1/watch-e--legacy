@@ -13,7 +13,7 @@ footer {
         top: 0;
         left: 0;
         z-index: -1;
-        clip-path: polygon(0 0%, 100% 0%, 100% 10%, 0% 90%);
+        clip-path: polygon(0 0, 100% 0, 100% 10%, 0% 90%);
     }
     &:after {
         content: "";
@@ -24,7 +24,7 @@ footer {
         position: absolute;
         top: 0;
         left: 0;
-        clip-path: polygon(0 0%, 100% 0%, 100% 5%, 0% 85%);
+        clip-path: polygon(0 -1%, 100% -1%, 100% 5%, 0% 85%);
     }
     .container {
         display: flex;
@@ -42,17 +42,6 @@ footer {
         display: flex;
         gap: 35px;
     }
-    a {
-        span {
-            background-color: var(--secondary-font-color) !important;
-            transition: background-color 0.3s;
-        }
-        &:hover {
-            span {
-                background-color: var(--secondary-font-color-hover) !important;
-            }
-        }
-    }
     .bg-icon {
         z-index: -2;
         background-color: var(--secondary-font-color);
@@ -65,7 +54,7 @@ footer {
     }
 
     @media only screen and (max-width: 1024px) {
-        padding: 50px 0 30px;
+        padding: 70px 0 30px;
         .container{
             padding: 0;
         }
@@ -77,11 +66,11 @@ footer {
         }
         &:before {
             height: 50px;
-            clip-path: polygon(0 0%, 100% 0%, 100% 20%, 0% 90%);
+            clip-path: polygon(0% 0, 100% 0, 100% 30%, 0% 80%);
         }
         &:after {
             height: 50px;
-            clip-path: polygon(0 0%, 100% 0%, 100% 5%, 0% 75%);
+            clip-path: polygon(0% -1%, 100% -1%, 100% 15%, 0% 65%);
         }
     }
 }

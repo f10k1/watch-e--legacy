@@ -1,6 +1,6 @@
 nav
     div.container
-        div.logo
+        a(href="/").logo.icon-link
             span.icon--camera-lens-fill
             .
                 Watch-E
@@ -9,9 +9,26 @@ nav
                 a(href="/product") #{__('Product')}
             li
                 a(href="/faq") #{__('Faq')}
-        ul.login
+            li
+                a(href="/dashboard") #{__('Dashboard')}
+        ul.login.clean
             li
                 a(href="/register") #{__('Sign in')}
             li
                 a(href="/login").btn #{__('Sign Up')}
-        span.icon--menu-line.menu-toggler
+        div.menu-toggler.hamburger
+            span
+            span
+            span
+        div.mobile-menu
+            ul.clean
+                li
+                    a(href="/product") #{__('Product')}
+                li
+                    a(href="/faq") #{__('Faq')}
+                li
+                    a(href="/dashboard") #{__('Dashboard')}
+                li
+                    a(href="/register") #{__('Sign in')}
+                li
+                    a(href="/login") #{__('Sign Up')}

@@ -12,7 +12,7 @@ const config = {
     entry: {
         index: './ts/index.ts',
         app: './scss/app.scss',
-        home: './scss/pages/_home.scss'
+        home: './scss/pages/home.scss'
     },
     output: {
         path: path.resolve(__dirname, '../../public'),
@@ -54,6 +54,9 @@ const config = {
         ],
         removeEmptyChunks: true
     },
+    resolve: {
+        extensions: ['.ts', '.tsx']
+    }
 };
 
 module.exports = () => {
