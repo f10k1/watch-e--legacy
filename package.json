@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "start npx tsc --watch && npx nodemon",
         "migration:generate": "npx typeorm migration:generate ./migrations/migration -d ./dataSource.js & npx tsc --p ./migrations/tsconfig.json",
-        "migration:start": "npx typeorm migration:run -d ./dataSource.js"
+        "migration:start": "npx typeorm migration:run -d ./dataSource.js",
+        "translate": "npx i18next"
     },
     "repository": {
         "type": "git",
@@ -41,6 +42,7 @@
         "@types/express": "^4.17.17",
         "@types/node": "^18.14.0",
         "@webpack-cli/generators": "^3.0.1",
+        "i18next-parser": "^7.7.0",
         "nodemon": "^2.0.20",
         "typescript": "^4.9.5",
         "webpack-cli": "^5.0.1"
