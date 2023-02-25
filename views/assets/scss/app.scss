@@ -1,5 +1,8 @@
-@import "./lib/_fonts.scss";
+@import "./lib/fonts";
 @import "./lib/mixins";
 @import "./lib/vars";
 
 @import "./app/global";
+@import "./app/navbar";
+@import "./app/footer";
+@import "./app/buttons";

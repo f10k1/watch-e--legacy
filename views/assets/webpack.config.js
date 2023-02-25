@@ -6,9 +6,14 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 const config = {
-    entry: ['./ts/index.ts', './scss/app.scss'],
+    entry: {
+        index: './ts/index.ts',
+        app: './scss/app.scss',
+        home: './scss/pages/_home.scss'
+    },
     output: {
         path: path.resolve(__dirname, '../../public'),
     },
@@ -22,14 +27,22 @@ const config = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-            }
+            },
+            {
+                test: /\.ttf$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: './fonts/[name][ext]',
+                },
+            },
         ],
     },
     plugins: [
         // css extraction into dedicated file
         new MiniCssExtractPlugin({
-            filename: './css/app.min.css'
+            filename: './css/[name].min.css'
         }),
+        new RemoveEmptyScriptsPlugin()
     ],
     optimization: {
         // minification - only performed when mode = production
@@ -38,7 +51,8 @@ const config = {
             `...`,
             // css minification
             new CssMinimizerPlugin(),
-        ]
+        ],
+        removeEmptyChunks: true
     },
 };
 

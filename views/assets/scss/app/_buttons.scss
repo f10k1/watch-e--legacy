@@ -1,0 +1,27 @@
+.btn {
+    @include font-styles(16, 18.75, 400);
+    padding: 10.5px 55px;
+    display: block;
+    cursor: pointer;
+    width: fit-content;
+    border-radius: 70px;
+    border: 1px solid var(--secondary-font-color);
+    color: var(--secondary-font-color);
+    text-decoration: none;
+    transition: color 0.5s, background-color 0.5s;
+    &:hover {
+        border-color: var(--secondary-font-color-hover);
+        background-color: var(--secondary-font-color-hover);
+        color: var(--main-font-color-hover);
+    }
+    &--red {
+        border-color: var(--red);
+        background-color: var(--red);
+        color: var(--white);
+        &:hover {
+            background-color: var(--red-hover);
+            color: var(--white-hover);
+            border-color: var(--red-hover);
+        }
+    }
+}

@@ -50,6 +50,6 @@ app.set("views", path.resolve("./views"));
 
 dataSource.default.initialize();
 
-router.get('/', upload.none(), (req, res) => res.render("pages/home"));
+router.get('/', upload.none(), (req, res) => res.render("pages/home", {style: 'home'}));
 
 app.listen(PORT);

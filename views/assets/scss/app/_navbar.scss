@@ -1,0 +1,60 @@
+nav {
+    background-color: var(--main-font-color);
+    & > div {
+        display: flex;
+        gap: 100px;
+        align-items: center;
+        padding: 50px 210px;
+    }
+    .nav-links {
+        gap: 35px;
+        display: flex;
+    }
+    .login {
+        align-items: center;
+        margin-left: auto;
+        display: flex;
+        gap: 35px;
+    }
+
+    .menu-toggler {
+        display: none;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        box-shadow: 0px 4px 4px 0px var(--blue-2);
+        & > div {
+            gap: 20px;
+            justify-content: space-between;
+            padding: 0;
+        }
+        .nav-links {
+            display: none;
+        }
+        .login {
+            padding: 0;
+            li:nth-child(2) {
+                display: none;
+            }
+        }
+        .menu-toggler {
+            width: 30px;
+            height: 30px;
+            display: block;
+            background-color: var(--secondary-font-color);
+        }
+    }
+}
+
+.logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--white);
+    @include font-styles(20, 22, 700);
+    span {
+        width: 40px;
+        height: 40px;
+        background-color: var(--red);
+    }
+}
