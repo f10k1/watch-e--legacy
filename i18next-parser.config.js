@@ -11,11 +11,11 @@ module.exports = {
     createOldCatalogs: false,
     lexers: {
         ts: [{
-            functions: ['__'],
+            functions: ['t'],
             lexer: 'JavascriptLexer'
         }],
         pug: [{
-            functions: ['__'],
+            functions: ['t'],
             lexer: 'JavascriptLexer'
         }]
     }

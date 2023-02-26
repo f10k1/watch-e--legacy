@@ -1,4 +1,7 @@
 {
+    "This login is already in use": "This login is already in use",
+    "Your login should be at least 5 characters long": "Your login should be at least 5 characters long",
+    "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter and one number": "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter and one number",
     "Get preview from your camera on real-time dashboard": "Get preview from your camera on real-time dashboard",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
         " Elementum nisi aliquet volutpat pellentesque volutpat est": {
