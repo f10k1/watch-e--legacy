@@ -4,9 +4,10 @@
     "description": "Web application for watching video from wireless cameras",
     "main": "index.ts",
     "scripts": {
-        "dev": "start npx tsc --watch && npx nodemon",
+        "server": "start npx tsc --watch && npx nodemon",
         "migration:generate": "npx typeorm migration:generate ./migrations/migration -d ./dataSource.js & npx tsc --p ./migrations/tsconfig.json",
         "migration:start": "npx typeorm migration:run -d ./dataSource.js",
+        "dev": "cd views/assets/ && webpack --mode=development --watch",
         "translate": "npx i18next"
     },
     "repository": {

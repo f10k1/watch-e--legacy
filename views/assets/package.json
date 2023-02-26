@@ -3,8 +3,7 @@
   "description": "My webpack project",
   "name": "my-webpack-project",
   "scripts": {
-    "dev:assets": "start node copy-images.js && node create-icons.js",
-    "dev": "webpack --mode=production --watch"
+    "dev": "webpack --mode=development --watch"
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
