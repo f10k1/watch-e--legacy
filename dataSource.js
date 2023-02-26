@@ -34,4 +34,5 @@ exports.default = new typeorm_1.DataSource({
     "database": process.env.DB_DATABASE,
     "entities": entities,
     "migrations": migrations,
+    "connectorPackage": 'mysql2'
 });
