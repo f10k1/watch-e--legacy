@@ -21,7 +21,7 @@ const copyImages = () => {
         fs.copyFileSync('./images/' + file, '../../public/images/' + file);
     });
 
-    console.log("Images copied")
+    console.log("Images copied");
 };
 
 const createIcons = () => {
@@ -45,14 +45,16 @@ const createIcons = () => {
     }
 
     fs.writeFileSync(`../../public/css/icons.css`, `${iconslist.join(' ')} [class^=icon--],[class*=" icon--"]{width:24px;height:24px;display:block;-webkit-mask-size:cover;mask-size:cover;background-color:#000;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;}`);
-    console.log("Created icons")
+    console.log("Created icons");
 };
 
 const config = {
     entry: {
         index: './ts/index.ts',
         app: './scss/app.scss',
-        home: './scss/pages/home.scss'
+        home: './scss/pages/home.scss',
+        user: './scss/pages/user.scss',
+        react: './react/index.tsx'
     },
     output: {
         path: path.resolve(__dirname, '../../public'),
