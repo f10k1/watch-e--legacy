@@ -1,0 +1,21 @@
+extends ../../layouts/user.pug
+
+block content
+    div.container
+        div.header
+            div.logo
+                span.icon--camera-lens-fill
+                .
+                    Watch-E
+            h1 #{t('Sign in')}
+        form(action="/user/login" enctype='multipart/form-data' method="post")
+            div.form-row
+                input#login(type="text" name="login" placeholder=" ")
+                label(for="login") #{t('Login')}
+            div.form-row
+                input#password(type="password" name="password" placeholder=" ")
+                label(for="password") #{t('Password')}
+            button.btn.btn--red(type="submit") #{t('Send')}
+            a(href="/user/remind") #{t('Forgot password')}
+            hr
+            a(href="/user/register").btn #{t('Sign up')}
