@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { render } from 'react-dom'
+import store from './store'
 
-const initializeComponent = (Component: any, container: string) => {
+const initComponent = (Component: any, container: string) => {
     const containers = document.querySelectorAll(container);
 
     if (!containers.length) return;
@@ -18,7 +19,6 @@ const initializeComponent = (Component: any, container: string) => {
             }
         });
 
-        const root = createRoot(element);
-        root.render(<Component {...props} />);
+        render(<Component {...props} store={store} />, element);
     });
 };
