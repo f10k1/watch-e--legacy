@@ -9,6 +9,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
+if (!fs.existsSync(`../../public`)) {
+    fs.mkdirSync(`../../public`);
+}
+
 const copyImages = () => {
     if (fs.existsSync(`../../public/images`)) {
         fs.rmSync(`../../public/images/*`, { force: true });
