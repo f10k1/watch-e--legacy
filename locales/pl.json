@@ -2,6 +2,8 @@
     "This login is already in use": "Login jest już zajęty",
     "Your login should be at least 5 characters long": "Twój login powinien zawierać conajmniej 5 znaków",
     "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter and one number": "Hasło musi być zawierać conajmniej 8 znaków, 1 dużą literę, 1 małą literę oraz 1 cyfrę",
+    "Passwords must be same": "Passwords must be same",
+    "Enter email in correct format": "Enter email in correct format",
     "Get preview from your camera on real-time dashboard": "Oglądaj obraz z kamery w czasie rzeczywistym",
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit": {
         " Elementum nisi aliquet volutpat pellentesque volutpat est": {
@@ -21,10 +23,16 @@
     "Automated notifications": "Automatyczne powiadomienia",
     "Remote configuration": "Zdalna konfiguracja",
     "Custom notifications": "Dostosuj powiadomienia",
+    "Sign in": "Zaloguj się",
+    "Login": "Login",
+    "Password": "Hasło",
+    "Send": "Wyślij",
+    "Forgot password": "Zapomniałem hasła",
+    "Sign up": "Zarejestruj się",
+    "E-mail": "E-mail",
+    "Password repeat": "Powtórz hasło",
     "Product": "Produkt",
     "FAQ": "FAQ",
     "Dashboard": "Panel",
-    "Faq": "Faq",
-    "Sign in": "Zaloguj się",
-    "Sign Up": "Zarejestruj się"
+    "Faq": "Faq"
 }
