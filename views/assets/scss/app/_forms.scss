@@ -20,7 +20,7 @@ form {
             border-radius: 20px;
             &:focus,
             &:not(:placeholder-shown) {
-                & + label:not(.checkbox):not(.radio):not(.file):not(.textarea) {
+                & ~ label:not(.checkbox):not(.radio):not(.file):not(.textarea) {
                     top: -10px;
                     @include font-styles(14, 16, 400);
                 }
