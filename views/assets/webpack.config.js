@@ -101,7 +101,7 @@ const config = {
         removeEmptyChunks: true
     },
     resolve: {
-        extensions: ['.ts', '.tsx']
+        extensions: ['.ts', '.tsx', '.js']
     }
 };
 

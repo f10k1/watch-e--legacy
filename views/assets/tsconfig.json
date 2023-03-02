@@ -6,7 +6,8 @@
     "target": "es5",
     "allowJs": true,
     "jsx": "react-jsx",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "files": [
     "ts/index.ts"
