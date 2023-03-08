@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const fs = require("fs")
 const multer = require("multer");
 const route = require("./dist/routes");
 const dataSource = require("./dataSource");
@@ -38,11 +39,19 @@ app.use(i18nextHttpMiddleware.handle(i18next, {
 
 global.t = i18next.t;
 
+const locales = {}
+
+fs.readdirSync('./locales').forEach(file => {
+    locales[file.replace('.json', '')] = JSON.parse(fs.readFileSync(`./locales/${file}`))
+})
+
 app.use((req, res, next) => {
     if (req.session.lng != req.language) {
         req.session.lng = req.language;
         res.locals.locale = req.session.lng;
     }
+
+    res.locals.translations = JSON.stringify(locales[req.language])
 
     i18next.changeLanguage(req.session.lng);
     next();
