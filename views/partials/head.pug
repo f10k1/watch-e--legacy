@@ -1,10 +1,13 @@
 meta(charset="utf-8")
 meta(name="viewport" content="width=device-width, initial-scale=1")
 title #{pageTitle}
-meta(name="locale" content=language)
+meta(name="locale" content=locale)
 meta(name="csrf-token" content=csrfToken)
 link(rel="stylesheet" href="/css/app.min.css")
 link(rel="stylesheet" href=`/css/${style}.min.css`)
 link(rel="stylesheet" href="/css/icons.css")
 link(rel="icon" href="/images/favicon.ico")
 block css
+script.
+    json = '#{translations}'
+    window.i18n = JSON.parse(json.replace(/&quot;/ig,'"'))
