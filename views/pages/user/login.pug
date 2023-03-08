@@ -2,7 +2,7 @@ extends ../../layouts/user.pug
 
 block content
     div.container
-        div.react-login
+        div.react-login(data-react-login-url=loginUrl data-react-register-url=registerUrl)
 
 block scripts
     script(src="/react.js") 

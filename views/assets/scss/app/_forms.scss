@@ -5,6 +5,20 @@ form {
     align-items: center;
     .form-row {
         position: relative;
+        &.error{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            input{
+                border: 1px solid #be0000;
+            }
+            span{
+                color: #be0000;
+            }
+        }
+        .input-helper{
+            position: relative;
+        }
         label:not(.checkbox):not(.radio):not(.file):not(.textarea) {
             position: absolute;
             top: 50%;
