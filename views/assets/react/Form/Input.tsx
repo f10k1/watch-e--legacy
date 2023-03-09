@@ -37,6 +37,10 @@ class Input extends React.Component<propsType>{
         super(props)
     }
 
+    changeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+        this.setState({...this.state, value: event.currentTarget.value})
+    }
+
     validate = () => {
         let validation = false
         if (this.props.validation) {
@@ -56,7 +60,7 @@ class Input extends React.Component<propsType>{
     render(): React.ReactNode {
         return <div className={`form-row ${(this.state.error != '' || this.props.messages) && 'error'}`}>
             <div className="input-helper">
-                <input type={this.props.type} name={this.props.name} placeholder=" " id={this.props.name} />
+                <input type={this.props.type} name={this.props.name} value={this.state.value} onChange={this.changeHandler} placeholder=" " id={this.props.name} />
                 <label htmlFor={this.props.name}>{this.props.label}</label>
             </div>
             {this.state.error != '' && <span>{this.state.error}</span>}

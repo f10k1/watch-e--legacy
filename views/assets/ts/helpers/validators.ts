@@ -1,3 +1,5 @@
+import t from './i18n'
+
 interface returnObj {
     status: boolean,
     msg?: string
@@ -11,7 +13,7 @@ const validators: validatorsType = {
     min: (value: string, min: number): returnObj => {
         if (value.length > 0 && value.length < min) return {
             status: false,
-            msg: 'Value is too short'
+            msg: t('Value is too short')
         }
 
         return {
@@ -21,7 +23,7 @@ const validators: validatorsType = {
     max: () => (value: string, max: number): returnObj => {
         if (value.length > max) return {
             status: false,
-            msg: 'Value is too long'
+            msg: t('Value is too long')
         }
 
         return {
@@ -31,13 +33,17 @@ const validators: validatorsType = {
     required: (value: string) => {
         if (value.length === 0) return {
             status: false,
-            msg: 'Input is required'
+            msg: t('Input is required')
         }
         return {
             status: true
         }
     },
-    email: () => { }
+    email: () => { 
+        return {
+            status: true
+        }
+    }
 }
 
 export default validators
