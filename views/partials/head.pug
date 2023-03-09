@@ -11,3 +11,5 @@ block css
 script.
     json = '#{translations}'
     window.i18n = JSON.parse(json.replace(/&quot;/ig,'"'))
+
+    window.csrf = '#{csrf}'
