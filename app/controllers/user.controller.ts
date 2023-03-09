@@ -3,19 +3,31 @@ import bcrypt from 'bcrypt';
 import { validationResult } from 'express-validator';
 
 
-
 export default class UserController {
 
     userModel = new UserModel;
     style = 'user';
 
     postRegister = (req, res, next) => {
-        const variables = {};
-        variables['errors'] = validationResult(req);
+        const variables: any = {}
+        res.setHeader('Content-Type', 'application/json')
 
-        if (!variables['errors'].length) this.userModel.createUser(res.body).then(res => { });
 
-        res.render('../views/pages/user/register.pug', { style: this.style, ...variables });
+        if (req.body === undefined){
+            res.end(JSON.stringify([res.end(JSON.stringify([{param: 'body', msg: res.locals.t('Invalid request')}]))]))
+            return
+        }
+
+        if (req.body.csrf != req.session.csrf){
+            res.end(JSON.stringify([{param: 'csrf', msg: res.locals.t('Invalid CSRF token')}]))
+            return
+        }
+
+        variables['errors'] = validationResult(req)['errors']
+
+        if (!variables.errors.length) this.userModel.createUser(res.body).then(res => { });
+
+        res.end(JSON.stringify({...variables}))
     };
 
     getUser = (req, res, next) => {

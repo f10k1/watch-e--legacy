@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const mysql2 = require('mysql2/promise');
 const MySQLStore = require('express-mysql-session');
+const { randomBytes } = require("crypto")
 
 dotenv.config({ path: path.resolve('./.env') });
 
@@ -31,7 +32,15 @@ const connection = mysql2.createPool({
 
 const sessionStore = MySQLStore({}, connection);
 
-app.use(session({ secret: process.env.SESSION_SECRET, name: 'session', store: sessionStore, resave: false, saveUninitialized: false }));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    name: 'session',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    httpOnly: true,
+    sameSite: 'strict'
+}));
 
 app.use(i18nextHttpMiddleware.handle(i18next, {
     ignoreRoutes: ['/public', '/dist']
@@ -45,22 +54,9 @@ fs.readdirSync('./locales').forEach(file => {
     locales[file.replace('.json', '')] = JSON.parse(fs.readFileSync(`./locales/${file}`))
 })
 
-app.use((req, res, next) => {
-    if (req.session.lng != req.language) {
-        req.session.lng = req.language;
-        res.locals.locale = req.session.lng;
-    }
-
-    res.locals.translations = JSON.stringify(locales[req.language])
-
-    i18next.changeLanguage(req.session.lng);
-    next();
-});
-
 app.use(express.static(path.resolve('./public')));
 
-const rootPath = path.resolve("./dist");
-app.use(express.static(rootPath));
+app.use(express.static(path.resolve("./dist")));
 
 app.set("view engine", "pug");
 app.set("views", path.resolve("./views"));
@@ -68,6 +64,29 @@ app.set("views", path.resolve("./views"));
 dataSource.default.initialize();
 
 const router = express.Router();
+
+router.use((req, res, next) => {
+    if (req.session.lng != req.language) {
+        req.session.lng = req.language;
+        res.locals.locale = req.session.lng;
+    }
+
+    if (res.locals.translations === undefined){
+        res.locals.translations = JSON.stringify(locales[req.language])
+    }
+
+    if (req.session.csrf === undefined) {
+        req.session.csrf = randomBytes(100).toString('base64')
+    }
+
+    if (res.locals.csrf === undefined) {
+        res.locals.csrf = req.session.csrf
+    }
+
+    i18next.changeLanguage(req.session.lng);
+    next();
+});
+
 app.use(router);
 
 route.default(router, upload, i18next.t);
