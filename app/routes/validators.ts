@@ -21,13 +21,16 @@ const passwordValidator = (t) => {
 const confirmPasswordValidator = (t) => {
     return body('passwordConfirm').trim().escape().custom((value, { req }) => {
         const password = req.body.password;
-
         if (password !== value) throw t('Passwords must be same');
+        else return true;
     });
 };
 
 const emailValidator = (t) => {
-    return body('email').trim().escape().normalizeEmail().isEmail().withMessage(() => t('Enter email in correct format'));
+    return body('email').trim().escape().custom(async value => {
+        const user = await userModel.checkIfEmailExists(value);
+        if (user.length) throw t('This email is already in use');
+    }).normalizeEmail().isEmail().withMessage(() => t('Enter email in correct format'));
 };
 
 export { usernameValidator, passwordValidator, emailValidator, confirmPasswordValidator };
