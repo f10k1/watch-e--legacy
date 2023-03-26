@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs")
 const multer = require("multer");
+const passport = require("passport")
 const route = require("./dist/routes");
 const dataSource = require("./dataSource");
 const i18next = require("./i18next.config");
@@ -41,6 +42,8 @@ app.use(session({
     httpOnly: true,
     sameSite: 'strict'
 }));
+
+app.use(passport.authenticate('session'))
 
 app.use(i18nextHttpMiddleware.handle(i18next, {
     ignoreRoutes: ['/public', '/dist']
