@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 
 import Login from "./Login"
 
-const initComponent = (Component: any, container: string) => {
+const initComponent = (Component: any, container: string, addStore: boolean):void => {
     const containers: NodeListOf<HTMLElement> = document.querySelectorAll(container);
 
     if (!containers.length) return;
@@ -21,10 +21,13 @@ const initComponent = (Component: any, container: string) => {
                 delete element.dataset[key]
             }
         });
+
+        if (addStore) props['store'] = store;
+
         const root = createRoot(element);
 
-        root.render(<Component {...props} store={store} />);
+        root.render(<Component {...props} />);
     });
 };
 
-initComponent(Login, '.react-login')
+initComponent(Login, '.react-login', true)
