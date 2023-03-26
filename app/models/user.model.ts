@@ -1,16 +1,46 @@
 import AppDataSource from "../../dataSource";
 import User from "../database/user.entity";
+import bcrypt from 'bcrypt';
 export default class UserModel {
-    async getUser(): Promise<any> {
-        return AppDataSource.getRepository(User).createQueryBuilder("user").getOne();
+
+    repository = AppDataSource.getRepository(User);
+
+    async getUser(name: string): Promise<any> {
+        return this.repository.createQueryBuilder("user").findOneBy({
+            name: name
+        });
     }
-    createUser(data): Promise<void> {
-        return new Promise(() => { });
+
+    async createUser(data): Promise<void> {
+        return new Promise(async (resolve) => {
+            const hash = await bcrypt.hash(data.password, 10);
+
+            const user = {
+                name: data.login,
+                password: hash,
+                email: data.email
+            };
+
+            await this.repository.save(user);
+
+            const getUser = await this.repository.findOneBy({
+                name: data.login,
+                email: data.email
+            });
+
+            resolve(getUser);
+        });
     }
 
     async checkIfUsernameExists(login: string): Promise<any> {
-        return AppDataSource.getRepository(User).find({
+        return this.repository.find({
             where: { name: login }
+        });
+    }
+
+    async checkIfEmailExists(email: string): Promise<any> {
+        return this.repository.find({
+            where: { email: email }
         });
     }
 }

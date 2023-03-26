@@ -33,7 +33,10 @@ const Login = (props: propsType) => {
             const tmp = input.validate()
             if (validate) validate = tmp
         })
-        if (validate) axios.post(props.registerUrl, data)
+        console.log(validate)
+        if (validate) axios.post(props.registerUrl, data).then(res => {
+            if (res.data.redirect) window.location = res.data.redirect
+        })
     }
 
     return <div className="container">
