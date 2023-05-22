@@ -13,7 +13,7 @@ const initialState: stateType = {
 const messagesReducer: Reducer<stateType, AnyAction> = (state = initialState, action: AnyAction) =>{
     switch(action.type){
         case 'messages/add':
-            return {...state, messages: action.id }
+            return {...state, messages: action.message }
         default:
             return state
     }

@@ -58,7 +58,7 @@ class Input extends React.Component<propsType>{
     }
 
     render(): React.ReactNode {
-        return <div className={`form-row ${(this.state.error != '' || this.props.messages) && 'error'}`}>
+        return <div className={`form-row ${(this.state.error != '' || this.props.messages) ? 'error' : ''}`}>
             <div className="input-helper">
                 <input type={this.props.type} name={this.props.name} value={this.state.value} onChange={this.changeHandler} placeholder=" " id={this.props.name} />
                 <label htmlFor={this.props.name}>{this.props.label}</label>
