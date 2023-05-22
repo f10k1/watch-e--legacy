@@ -11,6 +11,13 @@ body {
     quotes: "\201c""\201d";
     @include font-styles(16, 19, 500);
     color: var(--main-font-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 ul.clean {
@@ -45,10 +52,15 @@ img {
     max-width: 100%;
 }
 
-a:not(.btn) {
+a:not(.btn),
+button:not(.btn) {
     text-decoration: none;
     color: var(--secondary-font-color);
     transition: color 0.3s;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
     position: relative;
     @include font-styles(16, 18.75, 400);
     &:not(.icon-link) {

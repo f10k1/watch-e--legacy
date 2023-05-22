@@ -1,17 +1,32 @@
-@keyframes fade-in{
-    from{
+@keyframes fade-in {
+    from {
         opacity: 0;
     }
-    to{
+    to {
         opacity: 1;
     }
 }
 
-@keyframes fade-out{
-    from{
+@keyframes fade-out {
+    from {
         opacity: 1;
     }
-    to{
+    to {
         opacity: 0;
     }
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
 }
