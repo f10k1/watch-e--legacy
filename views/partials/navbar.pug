@@ -13,7 +13,10 @@ nav
                 a(href="/dashboard") #{t('Dashboard')}
         ul.login.clean
             li
-                a(href="/user").btn #{t('Sign in')}
+                if user
+                    a(href="/user/logout").btn #{t('Sign out')}
+                else
+                    a(href="/user/login").btn #{t('Sign in')}
         div.menu-toggler.hamburger
             span
             span
@@ -27,4 +30,7 @@ nav
                 li
                     a(href="/dashboard") #{t('Dashboard')}
                 li
-                    a(href="/user") #{t('Sign in')}
+                    if user
+                        a(href="/user/logout").btn #{t('Sign out')}
+                    else
+                        a(href="/user/login").btn #{t('Sign in')}

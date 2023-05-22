@@ -9,4 +9,6 @@ export default (router, upload, i18next) => {
     router.get("/user", upload.none(), userController.getUser);
     router.get("/user/login", upload.none(), userController.getLogin);
     router.post("/ajax/user/register", upload.none(), [usernameValidator(i18next), passwordValidator(i18next), emailValidator(i18next), confirmPasswordValidator(i18next)], userController.postRegister);
+    router.post("/ajax/user/login", upload.none(), userController.postLogin);
+    router.get("/user/logout", upload.none(), userController.getLogout);
 };

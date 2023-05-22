@@ -6,8 +6,11 @@ export default class UserModel {
     repository = AppDataSource.getRepository(User);
 
     async getUser(name: string): Promise<any> {
-        return this.repository.createQueryBuilder("user").findOneBy({
-            name: name
+        return new Promise(async (resolve) => {
+            const getUser = await this.repository.findOneBy({
+                name: name
+            });
+            resolve(getUser);
         });
     }
 

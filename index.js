@@ -86,6 +86,8 @@ router.use((req, res, next) => {
         res.locals.csrf = req.session.csrf
     }
 
+    res.locals.user = req.user
+
     i18next.changeLanguage(req.session.lng);
     next();
 });

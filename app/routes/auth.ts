@@ -18,9 +18,7 @@ instance.use(new LocalStrategy(
 ));
 
 instance.serializeUser((user, done) => {
-    console.log(user)
     process.nextTick(() => {
-        console.log(user)
         done(null, { id: user.id, username: user.name });
     });
 });
