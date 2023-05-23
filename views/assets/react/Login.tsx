@@ -17,12 +17,10 @@ const Login = (props: propsType) => {
     const animateForm = useRef<HTMLDivElement | null>(null);
 
     const [loginFormType, setLoginFormType] = useState(true);
-    const [messages, setMessages] = useState({});
+    const [messages, setMessages]: any[] = useState(() => store.getState().messages.messages);
 
     store.subscribe(() => {
-        setMessages({
-            messages: store.getState().messages.messages
-        });
+        setMessages(store.getState().messages.messages);
     });
 
     const sendForm = (event: React.FormEvent<HTMLElement>): void => {
