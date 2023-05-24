@@ -2,16 +2,15 @@ import React, { ElementRef, useRef, useState } from "react";
 import Input from './Form/Input';
 import axios from '../ts/helpers/axios';
 import t from '../ts/helpers/i18n';
+import store from "./store";
 interface propsType {
     loginUrl: string,
     registerUrl: string,
-    store: any;
 }
 
 type InputType = ElementRef<typeof Input>;
 
 const Login = (props: propsType) => {
-    const store: any = props.store;
 
     const form = useRef<InputType[] | null>([]);
     const animateForm = useRef<HTMLDivElement | null>(null);
@@ -20,7 +19,13 @@ const Login = (props: propsType) => {
     const [messages, setMessages]: any[] = useState(() => store.getState().messages.messages);
 
     store.subscribe(() => {
+<<<<<<< Updated upstream
         setMessages(store.getState().messages.messages);
+=======
+        setMessages({
+            messages: store.getState().messages
+        });
+>>>>>>> Stashed changes
     });
 
     const sendForm = (event: React.FormEvent<HTMLElement>): void => {
