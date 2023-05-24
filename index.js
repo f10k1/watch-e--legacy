@@ -74,6 +74,10 @@ router.use((req, res, next) => {
         res.locals.locale = req.session.lng;
     }
 
+    if (res.locals.pageTitle === undefined) {
+        res.locals.pageTitle = 'Watch-e'
+    }
+
     if (res.locals.translations === undefined){
         res.locals.translations = JSON.stringify(locales[req.language])
     }
