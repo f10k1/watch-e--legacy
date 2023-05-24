@@ -66,7 +66,7 @@ export default class UserController {
                 if (valid) {
                     req.login(data, (err) => {
                         if (err) { return next(err); }
-                        variables['redirect'] = '/user';
+                        variables['redirect'] = '/dashboard';
                         res.end(JSON.stringify({ ...variables }));
                     });
                 }

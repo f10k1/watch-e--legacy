@@ -1,14 +1,22 @@
 import UserController from '../controllers/user.controller';
 import { usernameValidator, passwordValidator, emailValidator, confirmPasswordValidator } from './validators';
 import passport from "./auth";
+import DashboardController from '../controllers/dashboard.controller';
+import ChartController from '../controllers/chart.controller';
+
 const userController = new UserController();
+const dashboardController = new DashboardController();
+const chartController = new ChartController();
 
 passport.initialize();
 
 export default (router, upload, i18next) => {
     router.get("/user", upload.none(), userController.getUser);
     router.get("/user/login", upload.none(), userController.getLogin);
+    router.get("/user/logout", upload.none(), userController.getLogout);
+    router.get("/dashboard", upload.none(), dashboardController.getDashboard);
+
     router.post("/ajax/user/register", upload.none(), [usernameValidator(i18next), passwordValidator(i18next), emailValidator(i18next), confirmPasswordValidator(i18next)], userController.postRegister);
     router.post("/ajax/user/login", upload.none(), userController.postLogin);
-    router.get("/user/logout", upload.none(), userController.getLogout);
+    router.get("/ajax/chart/notification/hour", upload.none(), chartController.getNotificationByHour);
 };
