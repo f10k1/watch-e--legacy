@@ -58,6 +58,7 @@ const config = {
         app: './scss/app.scss',
         home: './scss/pages/home.scss',
         user: './scss/pages/user.scss',
+        dashboard: './scss/pages/dashboard.scss',
         react: './react/index.tsx'
     },
     output: {

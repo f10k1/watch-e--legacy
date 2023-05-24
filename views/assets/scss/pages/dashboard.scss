@@ -1,0 +1,97 @@
+@import "../lib/_mixins.scss";
+
+.dashboard-module {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    gap: 30px;
+    aside {
+        position: sticky;
+        top: 20px;
+        background-color: var(--white);
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: fit-content;
+        padding: 20px 50px;
+        .logo {
+            grid-column: 1/-1;
+            margin: 20px auto;
+            width: fit-content;
+            @include font-styles(28);
+            span {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        hr {
+            width: 100%;
+            height: 1px;
+            border: 0;
+            background-color: var(--secondary-font-color);
+        }
+        ul {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            li {
+                width: 100%;
+                box-sizing: border-box;
+                a {
+                    padding: 15px 25px;
+                    font-weight: 300;
+                    transition: 0.3s background-color;
+                    border-radius: 25px;
+                    line-height: 20px;
+                    &:hover {
+                        font-weight: 400;
+                        background-color: var(--background-color-hover);
+                        .tooltip {
+                            transition: 0.3s background-color;
+                            background-color: var(--secondary-font-color-hover);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .main-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+        width: 100%;
+        section {
+            display: flex;
+            gap: 30px;
+            flex-direction: column;
+            border-radius: 25px;
+            &.column-1 {
+                grid-column: 1/4;
+            }
+            &.column-2 {
+                grid-column: 4/6;
+            }
+            .row {
+                display: flex;
+                gap: 20px;
+                .column {
+                    width: 50%;
+                }
+            }
+            .sub-section {
+                border-radius: 25px;
+                padding: 20px;
+                background-color: var(--white);
+            }
+        }
+    }
+    section {
+        padding: 25px;
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
+}
