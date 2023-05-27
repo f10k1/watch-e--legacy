@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import Notification from './notification.entity';
 
 @Entity()
 export default class User {
@@ -16,4 +17,7 @@ export default class User {
 
     @Column({ default: false })
     active: boolean;
+
+    @OneToMany(() => Notification, (notification) => notification.user)
+    notifications: Notification[];
 }
