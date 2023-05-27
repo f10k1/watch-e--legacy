@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/f10k1/watch-e#readme",
     "dependencies": {
+        "@reduxjs/toolkit": "^1.9.5",
         "bcrypt": "^5.1.0",
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.3",
@@ -41,7 +42,8 @@
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
         "typeorm": "0.3.12",
-        "webpack": "^5.75.0"
+        "webpack": "^5.75.0",
+        "ws": "^8.13.0"
     },
     "devDependencies": {
         "@types/express": "^4.17.17",
