@@ -46,7 +46,7 @@ export default class UserController {
         const variables: any = {};
         res.setHeader('Content-Type', 'application/json');
 
-        if (req.body === undefined) {
+        if (req.body === undefined || req.body.login === undefined || req.body.password === undefined) {
             res.end(JSON.stringify([res.end(JSON.stringify([{ param: 'body', msg: res.locals.t('Invalid request') }]))]));
             return;
         }
@@ -97,11 +97,11 @@ export default class UserController {
     };
 
     getLogout = (req, res, next) => {
-        if (!req.user) res.redirect("/user/login")
+        if (!req.user) res.redirect("/user/login");
 
         req.logout((err) => {
-            if (err) return next(err)
-            res.redirect("/user/login")
-        })
-    }
+            if (err) return next(err);
+            res.redirect("/user/login");
+        });
+    };
 }

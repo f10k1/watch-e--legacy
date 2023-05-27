@@ -24,7 +24,7 @@ export default class UserModel {
                 email: data.email
             };
 
-            await this.repository.save(user);
+            await this.repository.insert(user);
 
             const getUser = await this.repository.findOneBy({
                 name: data.login,
