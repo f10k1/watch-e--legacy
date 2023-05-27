@@ -94,4 +94,26 @@
         box-sizing: border-box;
         position: relative;
     }
+
+    .notifications{
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        .notification-title{
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            align-items: center;
+            span{
+                background-color: var(--red);
+            }
+            .notification-controls{
+                display: flex;
+                margin-left: auto;
+                gap: 20px;
+                button{}
+            }
+        }
+    }
 }

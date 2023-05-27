@@ -1,12 +1,22 @@
-import React, { useState } from "react";
-import t from '../../ts/helpers/i18n';
+import React, { useMemo, useState } from "react";
+import t from '../../../ts/helpers/i18n';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { stateType } from "./store";
+import { StateInterface } from "../interfaces/interfaces";
+
 
 export default function SideBar() {
 
-    const notifications = useSelector((state: stateType) => state.notifications);
+    const notifications = useSelector((state: StateInterface) => state.notifications);
+
+    const [notificationsCount, setNotificationsCount] = useState(() => 0);
+
+    useMemo(() => {
+        let count = 0;
+        count = Object.entries(notifications).reduce((total, [key, notif]) => total += Number(!notif.watched), 0);
+
+        setNotificationsCount((state) => state = count);
+    }, [notifications]);
 
     return <aside>
         <Link to="/dashboard" className="logo icon-link">
@@ -22,7 +32,7 @@ export default function SideBar() {
                 <Link to="/dashboard/cameras" className="icon-link"><span className="icon--camera-line"></span>{t('Cameras')}</Link>
             </li>
             <li>
-                <Link to="/dashboard/notifications" className="icon-link"><span className="icon--notification-line"></span>{t('Notifications')}<span className="tooltip">{notifications.length}</span></Link>
+                <Link to="/dashboard/notifications" className="icon-link"><span className="icon--notification-line"></span>{t('Notifications')}<span className="badge">{notificationsCount}</span></Link>
             </li>
             <li>
                 <Link to="/dashboard/files" className="icon-link"><span className="icon--film-line"></span>{t('Files')}</Link>
