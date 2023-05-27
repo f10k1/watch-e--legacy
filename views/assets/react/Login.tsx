@@ -2,7 +2,8 @@ import React, { ElementRef, useRef, useState } from "react";
 import Input from './Form/Input';
 import axios from '../ts/helpers/axios';
 import t from '../ts/helpers/i18n';
-import store from "./store";
+import { useSelector, useDispatch } from "react-redux";
+import { stateType } from "./store";
 interface propsType {
     loginUrl: string,
     registerUrl: string,
@@ -16,17 +17,9 @@ const Login = (props: propsType) => {
     const animateForm = useRef<HTMLDivElement | null>(null);
 
     const [loginFormType, setLoginFormType] = useState(true);
-    const [messages, setMessages]: any[] = useState(() => store.getState().messages.messages);
+    const messages: any[] = useSelector((state: stateType) => state.messages);
 
-    store.subscribe(() => {
-<<<<<<< Updated upstream
-        setMessages(store.getState().messages.messages);
-=======
-        setMessages({
-            messages: store.getState().messages
-        });
->>>>>>> Stashed changes
-    });
+    const dispatch = useDispatch()
 
     const sendForm = (event: React.FormEvent<HTMLElement>): void => {
         event.preventDefault();
