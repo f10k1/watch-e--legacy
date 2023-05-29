@@ -123,11 +123,11 @@ button:not(.btn) {
         padding: 10px;
         background-color: var(--background-color);
         visibility: hidden;
-        transition: .5s opacity;
+        transition: 0.5s opacity;
         white-space: nowrap;
     }
-    &:hover{
-        .tooltip-text{
+    &:hover {
+        .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
@@ -139,4 +139,13 @@ button:not(.btn) {
     gap: 10px;
     @include font-styles(20, 22, 700);
     align-items: center;
+}
+
+.system-notification {
+    z-index: 999;
+    background-color: var(--main-font-color);
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }

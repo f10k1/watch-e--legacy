@@ -6,8 +6,19 @@ export interface NotificationInterface {
     description: string;
 }
 
+export interface SystemNotificationInterface {
+    type: string,
+    description: string;
+}
+
+export interface SystemInterface {
+    config: any,
+    notificationQueue: SystemNotificationInterface[];
+}
+
 export interface StateInterface {
     notifications: { [id: number]: NotificationInterface; },
     files: any[],
     cameras: any[];
+    system: SystemInterface;
 }

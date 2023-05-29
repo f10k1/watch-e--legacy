@@ -1,19 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import store from "./store/store";
-
-import { useDispatch } from "react-redux";
-import { notificationSlice } from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import SideBar from "./shared/side-bar";
+import SideBar from "./shared/SideBar";
 import NotificationsList from "./pages/notificationsList";
-import { NotificationInterface } from "./interfaces/interfaces";
+import SystemNotificationWrapper from "./shared/SystemNotificationWrapper";
 
 export default function App() {
 
     return <Provider store={store}>
-        < BrowserRouter >
+        <BrowserRouter>
             <div className="dashboard-module">
                 <SideBar></SideBar>
                 <Routes>
@@ -23,6 +20,7 @@ export default function App() {
                     </Route>
                 </Routes>
             </div>
-        </BrowserRouter >
+        </BrowserRouter>
+        <SystemNotificationWrapper></SystemNotificationWrapper>
     </Provider>;
 }
