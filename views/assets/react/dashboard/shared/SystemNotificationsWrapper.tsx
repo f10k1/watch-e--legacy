@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StateInterface, SystemNotificationInterface } from "../interfaces/interfaces";
-import SystemNotification from "./systemNotification";
+import SystemNotification from "./SystemNotification";
 import systemSlice from "../store/system";
 
 export default function SystemNotificationWrapper() {
@@ -10,8 +10,6 @@ export default function SystemNotificationWrapper() {
     const dispatch = useDispatch();
 
     const [currentNotification, setCurrentNotification]: [SystemNotificationInterface | null, Function] = useState(() => notifications[0] ?? null);
-
-    const notificationRef = useRef(null);
 
     const onClose = useCallback(() => {
         dispatch(systemSlice.actions.remove());

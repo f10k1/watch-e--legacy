@@ -52,11 +52,13 @@ export const notificationsApi = createApi({
 
 export const { useGetNotificationsQuery } = notificationsApi;
 
-export const markNotificationAsWatched = createAsyncThunk('notification/markAsWatched', async (id: number) => {
+export const changeNotification = createAsyncThunk('notification/changeNotification', async (data: { id: number, changes: Partial<NotificationInterface>; }) => {
+    const { id, changes } = data;
     const response = await axios.patch('/ajax/notification/', {
         id: id,
-        watched: true
+        ...changes
     });
+    console.log(response.data);
     return response.data;
 });
 
@@ -78,13 +80,13 @@ const notificationSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(markNotificationAsWatched.fulfilled, (state, action) => {
+            .addCase(changeNotification.fulfilled, (state, action) => {
+                console.log(action.payload);
                 if (action.payload)
                     state[action.payload.id] = action.payload;
             }).addCase(deleteNotification.fulfilled, (state, action) => {
                 if (action.payload)
-                    console.log(action.payload);
-                delete state[action.payload.id];
+                    delete state[action.payload.id];
             });;
     }
 });

@@ -3,7 +3,7 @@ import t from "../../../ts/helpers/i18n";
 import { useAppDispatch } from "../store/store";
 import { NotificationInterface } from "../interfaces/interfaces";
 import { Link } from "react-router-dom";
-import { deleteNotification, markNotificationAsWatched } from "../store/notifications";
+import { deleteNotification, changeNotification } from "../store/notifications";
 
 
 function Notification({ notification, expandable }: { notification: NotificationInterface, expandable: boolean; }) {
@@ -12,7 +12,11 @@ function Notification({ notification, expandable }: { notification: Notification
 
     const [expand, setExpand] = useState(() => false);
     const markAsWatched = () => {
-        dispatch(markNotificationAsWatched(notification.id));
+        dispatch(changeNotification({ id: notification.id, changes: { watched: !notification.watched } }));
+    };
+
+    const changeImportant = () => {
+        dispatch(changeNotification({ id: notification.id, changes: { important: !notification.important } }));
     };
 
     const removeNotification = () => {
@@ -24,10 +28,18 @@ function Notification({ notification, expandable }: { notification: Notification
             <span className="icon icon--notification-line"></span>
             {!expandable ? <Link to="/dashboard/notifications" className="icon-link">{notification.title}</Link> : <button className="icon-link" onClick={() => setExpand((state) => !state)}>{notification.title}</button>}
             <div className="notification-controls">
-                {!notification.watched ? <button className="icon-link tooltip" onClick={markAsWatched}>
-                    <span className="icon icon--eye-line"></span>
-                    <div className="tooltip-text">{t('Mark as watched')}</div>
-                </button> : <></>}
+                <button className="icon-link tooltip" onClick={markAsWatched}>
+                    {notification.watched ? <> <span className="icon icon--eye-line"></span>
+                        <div className="tooltip-text">{t('Mark as watched')}</div></> : <> <span className="icon icon--eye-close-line"></span>
+                        <div className="tooltip-text">{t('Mark as unwatched')}</div></>}
+
+                </button>
+                <button className="icon-link tooltip" onClick={changeImportant}>
+                    {!notification.important ? <><span className="icon icon--star-line"></span>
+                        <div className="tooltip-text">{t('Mark as important')}</div> </> : <><span className="icon icon--star-fill"></span>
+                        <div className="tooltip-text">{t('Mark as unimportant')}</div></>}
+
+                </button>
                 <button className="icon-link tooltip" onClick={removeNotification}>
                     <span className="icon icon--close-line"></span>
                     <div className="tooltip-text">{t('Delete')}</div>

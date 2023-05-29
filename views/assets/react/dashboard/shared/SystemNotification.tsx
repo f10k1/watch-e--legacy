@@ -1,4 +1,4 @@
-import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import { SystemNotificationInterface } from "../interfaces/interfaces";
 
 export default function SystemNotification({ notification, close }: { notification: SystemNotificationInterface, close: Function; }) {
@@ -33,5 +33,8 @@ export default function SystemNotification({ notification, close }: { notificati
 
     }, [nodeRef]);
 
-    return <div ref={nodeRef} className={`system-notification ${notification && notification.type}`}> {notification.description}</div >;
+    return <div ref={nodeRef} className={`system-notification ${notification && notification.type}`}>
+        {notification.description}
+        <button className="close icon-link" onClick={onClose}><span className="icon icon--close-line"></span></button>
+    </div >;
 }

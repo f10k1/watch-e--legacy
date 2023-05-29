@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import generateCharts from '../../../ts/functions/chart';
 import t from '../../../ts/helpers/i18n';
 import NotificationsWrapper from "../shared/NotificationsWrapper";
+import { NOTIFICATIONS_TYPES } from "../interfaces/interfaces";
 
 export default function Home() {
     useEffect(() => {
@@ -31,15 +32,12 @@ export default function Home() {
             </div>
         </section>
         <section className="column-2">
-            <div className="notifications sub-section">
-                <span className="title">{t('Notifications')}</span>
-                <div>
-                    <NotificationsWrapper></NotificationsWrapper>
-                </div>
-            </div>
+            <NotificationsWrapper type={NOTIFICATIONS_TYPES.UNWATCHED}>
+                {t('Notifications')}
+            </NotificationsWrapper>
             <div className="cameras sub-section">
                 <span className="title">{t('Your cameras')}</span>
             </div>
-        </section>
-    </div>;
+        </section >
+    </div >;
 }

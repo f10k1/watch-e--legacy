@@ -3,7 +3,9 @@ export interface NotificationInterface {
     watched: boolean,
     title: string,
     type: string,
-    description: string;
+    description: string,
+    important: boolean,
+    create_date: Date;
 }
 
 export interface SystemNotificationInterface {
@@ -21,4 +23,10 @@ export interface StateInterface {
     files: any[],
     cameras: any[];
     system: SystemInterface;
+}
+
+export enum NOTIFICATIONS_TYPES {
+    ALL,
+    STARRED,
+    UNWATCHED,
 }

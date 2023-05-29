@@ -2,10 +2,10 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import SideBar from "./shared/SideBar";
-import NotificationsList from "./pages/notificationsList";
-import SystemNotificationWrapper from "./shared/SystemNotificationWrapper";
+import NotificationsList from "./pages/NotificationsList";
+import SystemNotificationWrapper from "./shared/SystemNotificationsWrapper";
 
 export default function App() {
 
