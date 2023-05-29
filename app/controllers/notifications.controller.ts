@@ -28,12 +28,12 @@ export default class NotificationsController {
         }
 
         if (req.body === undefined || req.body.id === undefined) {
-            res.end(JSON.stringify([res.end(JSON.stringify([{ param: 'body', msg: res.locals.t('Invalid request') }]))]));
+            res.sendStatus(400)
             return;
         }
 
         if (req.body.csrf != req.session.csrf) {
-            res.end(JSON.stringify([{ param: 'csrf', msg: res.locals.t('Invalid CSRF token') }]));
+            res.sendStatus(403);
             return;
         }
 
@@ -45,7 +45,7 @@ export default class NotificationsController {
         }
 
         await this.notificationModel.removeNotification(Number(req.body.id));
-        return res.sendStatus(200)
+        return res.end(JSON.stringify({'id': req.body.id}))
     };
 
     patchNotification = async (req, res, next) => {
@@ -55,7 +55,7 @@ export default class NotificationsController {
             res.sendStatus(401);
             return;
         }
-        console.log(req)
+
         if (req.body === undefined || req.body.id === undefined) {
             res.sendStatus(400)
             return;
