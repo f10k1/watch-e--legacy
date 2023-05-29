@@ -3,28 +3,20 @@ import t from "../../../ts/helpers/i18n";
 import { useAppDispatch } from "../store/store";
 import { NotificationInterface } from "../interfaces/interfaces";
 import { Link } from "react-router-dom";
-import { deleteNotification, markNotificationAsWatched, notificationSlice } from "../store/notifications";
+import { deleteNotification, markNotificationAsWatched } from "../store/notifications";
 
-interface PropsInterface {
-    notification: NotificationInterface,
-    expandable: boolean;
-}
 
-function Notification({ notification, expandable }: PropsInterface) {
+function Notification({ notification, expandable }: { notification: NotificationInterface, expandable: boolean; }) {
 
     const dispatch = useAppDispatch();
 
     const [expand, setExpand] = useState(() => false);
     const markAsWatched = () => {
-        dispatch(markNotificationAsWatched(notification.id)).then(() => {
-            dispatch(notificationSlice.actions.markAsWatched(notification.id));
-        }).catch((err) => console.log(err));
+        dispatch(markNotificationAsWatched(notification.id));
     };
 
     const removeNotification = () => {
-        dispatch(deleteNotification(notification.id)).then(() => {
-            dispatch(notificationSlice.actions.delete(notification.id));
-        }).catch((err) => console.log(err));
+        dispatch(deleteNotification(notification.id));
     };
 
     return <>

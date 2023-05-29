@@ -2,15 +2,13 @@ import React, { useMemo, useState } from "react";
 import t from '../../../ts/helpers/i18n';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { StateInterface } from "../interfaces/interfaces";
+import { StateInterface, NotificationInterface } from "../interfaces/interfaces";
 
 
 export default function SideBar() {
 
     const notifications = useSelector((state: StateInterface) => state.notifications);
-
     const [notificationsCount, setNotificationsCount] = useState(() => 0);
-
     useMemo(() => {
         let count = 0;
         count = Object.entries(notifications).reduce((total, [key, notif]) => total += Number(!notif.watched), 0);

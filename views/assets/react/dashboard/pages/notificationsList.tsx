@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { StateInterface } from "../interfaces/interfaces";
-import Notification from "../shared/notification";
+import Notification from "../shared/Notification";
 export default function NotificationsList() {
 
     const notifications = useSelector((state: StateInterface) => state.notifications);
