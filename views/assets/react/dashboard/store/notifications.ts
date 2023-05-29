@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import axios from "axios";
+import axios from "../../../ts/helpers/axios";
 import { NotificationInterface } from "../interfaces/interfaces";
 
 function isNotification(notification: any) {
@@ -53,51 +53,40 @@ export const notificationsApi = createApi({
 export const { useGetNotificationsQuery } = notificationsApi;
 
 export const markNotificationAsWatched = createAsyncThunk('notification/markAsWatched', async (id: number) => {
-    try {
-        const response = await axios.patch('/ajax/notification', {
-            id: id,
-            watched: true
-        });
-        return response.data;
-    }
-    catch (err) {
-        console.log(err);
-    }
-
+    const response = await axios.patch('/ajax/notification/', {
+        id: id,
+        watched: true
+    });
+    return response.data;
 });
 
 export const deleteNotification = createAsyncThunk('notification/delete', async (id: number) => {
-    try {
-        const response = await axios.delete('/ajax/notification', {
-            data: { id: id },
-        });
-        return response.data;
-    }
-    catch (err) {
-        console.log(err);
-    }
-
+    const response = await axios.delete('/ajax/notifications/', {
+        data: { id: id },
+    });
+    return response.data;
 });
 
-export const notificationSlice = createSlice({
+const notificationSlice = createSlice({
     name: 'notification',
     initialState: {} as any,
     reducers: {
         add(state, actions: PayloadAction<NotificationInterface | NotificationInterface[]>) {
             if (actions.payload.constructor === Array) actions.payload.forEach(notification => state[notification.id] = notification);
             else state[(actions.payload as NotificationInterface).id] = actions.payload;
-        },
-        delete(state, action: PayloadAction<number>) {
-            delete state[action.payload];
-        },
-        markAsWatched(state, action: PayloadAction<number>) {
-            state[action.payload].watched = true;
         }
     },
     extraReducers(builder) {
         builder
             .addCase(markNotificationAsWatched.fulfilled, (state, action) => {
-                state[action.payload.id] = action.payload;
-            });
+                if (action.payload)
+                    state[action.payload.id] = action.payload;
+            }).addCase(deleteNotification.fulfilled, (state, action) => {
+                if (action.payload)
+                    console.log(action.payload);
+                delete state[action.payload.id];
+            });;
     }
 });
+
+export default notificationSlice;
