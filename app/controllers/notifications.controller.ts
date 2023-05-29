@@ -28,7 +28,7 @@ export default class NotificationsController {
         }
 
         if (req.body === undefined || req.body.id === undefined) {
-            res.sendStatus(400)
+            res.sendStatus(400);
             return;
         }
 
@@ -45,7 +45,7 @@ export default class NotificationsController {
         }
 
         await this.notificationModel.removeNotification(Number(req.body.id));
-        return res.end(JSON.stringify({'id': req.body.id}))
+        return res.end(JSON.stringify({ 'id': req.body.id }));
     };
 
     patchNotification = async (req, res, next) => {
@@ -57,7 +57,7 @@ export default class NotificationsController {
         }
 
         if (req.body === undefined || req.body.id === undefined) {
-            res.sendStatus(400)
+            res.sendStatus(400);
             return;
         }
 
@@ -77,8 +77,10 @@ export default class NotificationsController {
 
         if (req.body.title) data['title'] = req.body.title;
         if (req.body.description) data['description'] = req.body.description;
-        if (req.body.watched) data['watched'] = Boolean(req.body.watched);
+        if (req.body.watched) data['watched'] = Boolean(JSON.parse(req.body.watched));
         if (req.body.type) data['type'] = req.body.type;
+        if (req.body.important) data['important'] = Boolean(JSON.parse(req.body.important));
+
 
         const updatedNotification = await this.notificationModel.changeNotification(Number(req.body.id), data);
         res.end(JSON.stringify(updatedNotification));

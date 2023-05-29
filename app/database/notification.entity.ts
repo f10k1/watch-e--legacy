@@ -18,6 +18,9 @@ export default class Notification {
     @Column()
     type: string;
 
+    @Column({ default: false })
+    important: boolean;
+
     @CreateDateColumn()
     date: Date;
 
